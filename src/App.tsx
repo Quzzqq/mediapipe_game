@@ -6,6 +6,7 @@ import { MpPlayer } from "./MpPlayer";
 const App = () => {
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pointsCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const [score, setScore] = useState(0);
   const [cameraIsReady, setCameraIsReady] = useState(false);
@@ -23,11 +24,15 @@ const App = () => {
       <h1 className="text-3xl font-bold mb-4">Score: {score}</h1>
       <MpPlayer
         canvasRef={canvasRef}
+        pointsCanvasRef={pointsCanvasRef}
         webcamRef={webcamRef}
         onChange={() => setCameraIsReady(true)}
       />
       {gameIsReady && (
-        <PointGenerator canvasRef={canvasRef} onHit={handleScoreIncrease} />
+        <PointGenerator
+          canvasRef={pointsCanvasRef}
+          onHit={handleScoreIncrease}
+        />
       )}
       {cameraIsReady && (
         <button

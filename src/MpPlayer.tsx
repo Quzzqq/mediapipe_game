@@ -6,11 +6,17 @@ import Webcam from "react-webcam";
 
 type Props = {
   canvasRef: RefObject<HTMLCanvasElement | null>;
+  pointsCanvasRef: RefObject<HTMLCanvasElement | null>;
   webcamRef: RefObject<Webcam | null>;
   onChange: () => void;
 };
 
-export const MpPlayer = ({ canvasRef, webcamRef, onChange }: Props) => {
+export const MpPlayer = ({
+  canvasRef,
+  pointsCanvasRef,
+  webcamRef,
+  onChange,
+}: Props) => {
   useLayoutEffect(() => {
     const holistic = new Holistic({
       locateFile: (file) =>
@@ -99,7 +105,13 @@ export const MpPlayer = ({ canvasRef, webcamRef, onChange }: Props) => {
       />
       <canvas
         ref={canvasRef}
-        className="rounded-3xl absolute top-0 left-0"
+        className="rounded-3xl absolute top-0 left-0 z-10"
+        width={640}
+        height={480}
+      />
+      <canvas
+        ref={pointsCanvasRef}
+        className="rounded-3xl absolute top-0 left-0 z-20 pointer-events-none"
         width={640}
         height={480}
       />

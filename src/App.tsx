@@ -12,8 +12,9 @@ const App = () => {
   const [cameraIsReady, setCameraIsReady] = useState(false);
   const [gameIsReady, setGameIsReady] = useState(false);
 
-  const handleScoreIncrease = () => {
-    setScore((prevScore) => prevScore + 1);
+  const handleScoreIncrease = (points: number) => {
+    console.log(points);
+    setScore((prevScore) => prevScore + points);
   };
 
   const handleClick = () => {
